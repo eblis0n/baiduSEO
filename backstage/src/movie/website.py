@@ -24,7 +24,9 @@ import openai
 import pymysql
 import random
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from backstage.src.logoDesign.logo import logo
+from src.logoDesign.logo import logo
+
+
 
 
 class website():
@@ -708,7 +710,7 @@ class website():
             new_db_config = {
                 'host': '127.0.0.1',
                 'user': 'root',
-                'password': '49d89f00a11177b9'
+                'password': 'abingou2016'
             }
             documents = self.copy_database_datas(new_db_config, "cnjinglei_com")
 
@@ -766,7 +768,7 @@ if __name__ == '__main__':
     db_config_slave = {
         'host': '127.0.0.1',
         'user': 'root',
-        'password': '49d89f00a11177b9'
+        'password': 'abingou2016'
     }
     # 格式化打印当前时间
     current_time = datetime.now()
