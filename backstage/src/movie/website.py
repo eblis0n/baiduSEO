@@ -777,18 +777,22 @@ if __name__ == '__main__':
     documents = ws.witchdatas(witch)
     # print(f"本批次数据使用：{documents}")
 
-    json_path = "/www/wwwroot/baiduSEO/backstage/src/movie/output.json"
+
+
+
+    # 项目根目录
+    pro_folder = "/www"
+    # 项目模版目录
+    source_folder = f"{pro_folder}/baiduSEO/backstage/src/movie/yszhanqun"
+
+    font_path = f"{pro_folder}/baiduSEO/backstage/src/logoDesign/NotoSansSC-VariableFont_wght.ttf"  # 替换为支持中文的字体路径
+    img_folder = f"{pro_folder}/baiduSEO/backstage/src/logoDesign/img/"
+
+    json_path = f"{pro_folder}/baiduSEO/backstage/src/movie/output.json"
     file_datas = ws.read_json(json_path)
 
     json_datas = json.loads(file_datas)
     print(f"读取配置成功，一共有{len(json_datas)} 个站点需要上线， 开始干活！！！！")
-
-    font_path = f"/www/wwwroot/baiduSEO/backstage/src/logoDesign/NotoSansSC-VariableFont_wght.ttf"  # 替换为支持中文的字体路径
-    img_folder = f"/www/wwwroot/baiduSEO/backstage/src/logoDesign/img/"
-
-    pro_folder = "/www/wwwroot"
-
-    source_folder = f"{pro_folder}/movie/yszhanqun"
 
     for idx, (site, data) in enumerate(json_datas.items()):
         print(f"开始构建第 {idx + 1} 个，总: {len(json_datas)}")
@@ -801,14 +805,14 @@ if __name__ == '__main__':
         database_php_path = f"{destination_path}/application/database.php"
         maccms_php_path = f"{destination_path}/application/extra/maccms.php"
         source_file_name = "nginx.conf"
-        ng_path = f"/www/server/panel/vhost/nginx/{database_name}.conf"
-        well_known_path = f"/www/server/panel/vhost/nginx/well-known/{database_name}.conf"
+        ng_path = f"/usr/local/nginx/conf/vhost/{database_name}.conf"
+        well_known_path = f"/usr/local/nginx/conf/vhost/well-known/{database_name}.conf"
         database_newdict = {'$site': f"{site}", '$database': f"{database_name}", '$user': f"{db_config_slave['user']}",
                             '$password': f"{db_config_slave['password']}"}
         ng_newdict = {'$site': f"{site}", '$foldername': f"{database_name}"}
         data['$foldername'] = f"{database_name}"
         seo_dict = data
-        pseudo_path = f"/www/server/panel/vhost/rewrite/{database_name}.conf"
+        pseudo_path = f"/usr/local/nginx/conf/rewrite/{database_name}.conf"
         pseudo_file_name = "site.com.conf"
         ws.run(font_path, img_folder, database_name, source_folder, destination_path, db_config_master, db_config_slave,
                sql_file_path, database_php_path, database_newdict, maccms_php_path, seo_floder, seo_dict, ng_path,
