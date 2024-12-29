@@ -106,7 +106,11 @@ class website():
         slef.chmod_777(destination_path)
 
         print("重启NG 收工")
-        slef.restart_nginx()
+        try:
+            slef.baota_restart_nginx()
+        except:
+            slef.centos_restart_nginx()
+
 
     def sanitize_mysql_name(slef, name: str) -> str:
         """
@@ -141,7 +145,7 @@ class website():
         return json_data
 
     @staticmethod
-    def restart_nginx():
+    def baota_restart_nginx():
         try:
             # 使用 subprocess 执行重启命令
             result = subprocess.run(['/etc/init.d/nginx', 'restart'], check=True, text=True, capture_output=True)
@@ -150,6 +154,18 @@ class website():
         except subprocess.CalledProcessError as e:
             print(f"重启 Nginx 服务时出错: {e}")
             print("错误信息:", e.stderr)
+
+    def centos_restart_nginx(slef):
+        try:
+            # 使用 subprocess 执行 systemctl 命令重启 Nginx 服务
+            result = subprocess.run(['systemctl', 'restart', 'nginx'], check=True, text=True, capture_output=True)
+            print("Nginx 服务已成功重启")
+            print("输出:", result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"重启 Nginx 服务时出错: {e}")
+            print("错误信息:", e.stderr)
+        except FileNotFoundError:
+            print("无法找到 systemctl 命令，请确认它是否安装并可用。")
 
     def copy_file(slef, source_folder, destination_path, source_file_name=None):
         """
@@ -698,7 +714,7 @@ class website():
         except Exception as e:
             print(f"发生错误: {e}")
 
-    def witchdatas(self, witch):
+    def witchdatas(self, witch, databasename):
         """
             @Datetime ： 2024/12/28 00:52
             @Author ：eblis
@@ -712,7 +728,7 @@ class website():
                 'user': 'root',
                 'password': 'abingou2016'
             }
-            documents = self.copy_database_datas(new_db_config, "cnjinglei_com")
+            documents = self.copy_database_datas(new_db_config, databasename)
 
             print(f"从指定库，一共复制了{len(documents)} 条数据")
         else:
@@ -776,7 +792,7 @@ if __name__ == '__main__':
     print(f"脚本开始运行时间:{formatted_time}")
 
     witch = "nono"
-    documents = ws.witchdatas(witch)
+    documents = ws.witchdatas(witch,"njrhzs_com")
     # print(f"本批次数据使用：{documents}")
 
 

@@ -61,7 +61,9 @@ class updateSiteData():
                         elif i == 2:
                             print(f"在目标库 mac_comment 中 添加  指定视频数量的 1条评论；")
                             videoDatas = self.fetch_fixed_data_from_master(db_config_master, int(row[i]))
+                            commentInsert = []
                             for video in videoDatas:
+                                prompt = f"你是一个资深的 视频点评人，请对 《{videoDatas['vod_name']}》 这视频 写 200字左右的点评；要求：1、内容必须为正面，不能出现粗言秽语；"
                                 data = {
                                     "comment_mid": int(video["vod_id"]),
                                     "comment_rid": 0,
@@ -77,6 +79,8 @@ class updateSiteData():
                                     "comment_reply": 0,
                                     "comment_report": 0
                                 }
+                                commentInsert.append(data)
+                            self.comment_insert_sql(db_config_slave, commentInsert, database_name)
 
                         elif i == 3:
 
@@ -381,27 +385,70 @@ class updateSiteData():
         try:
             # 连接到数据库
             connection_gbook = pymysql.connect(**db_config_slave)
-            try:
-                with connection_gbook.cursor() as cursor:
 
-                    # SQL 插入语句
-                    sql = """
-                        INSERT  INTO `gbook` (
-                       `gbook_rid`, `user_id`, `gbook_status`, `gbook_name`, `gbook_ip`, `gbook_time`, `gbook_reply_time`, `gbook_content`, `gbook_reply`)
-                        VALUES (
-                            %(gbook_rid)s, %(user_id)s, %(gbook_status)s, %(gbook_name)s,  INET_ATON(%(gbook_ip)s), %(gbook_time)s, %(gbook_reply_time)s, %(gbook_content)s, %(gbook_reply)s)
-                    """
-                    # 分批插入
-                    for i in range(0, len(insertDatas), batch_size):
-                        batch = insertDatas[i:i + batch_size]
-                        cursor.executemany(sql, batch)
-                        connection_gbook.commit()
-                        print(f"成功插入 {len(batch)} 条记录，已处理到第 {i + len(batch)} 条记录")
+            with connection_gbook.cursor() as cursor:
 
-            except Exception as e:
-                print(f"插入数据时发生错误：{e}")
-                connection_gbook.rollback()
-                raise
+                # SQL 插入语句
+                sql = """
+                    INSERT  INTO `gbook` (
+                   `gbook_rid`, `user_id`, `gbook_status`, `gbook_name`, `gbook_ip`, `gbook_time`, `gbook_reply_time`, `gbook_content`, `gbook_reply`)
+                    VALUES (
+                        %(gbook_rid)s, %(user_id)s, %(gbook_status)s, %(gbook_name)s,  INET_ATON(%(gbook_ip)s), %(gbook_time)s, %(gbook_reply_time)s, %(gbook_content)s, %(gbook_reply)s)
+                """
+                # 分批插入
+                for i in range(0, len(insertDatas), batch_size):
+                    batch = insertDatas[i:i + batch_size]
+                    cursor.executemany(sql, batch)
+                    connection_gbook.commit()
+                    print(f"gbook成功插入 {len(batch)} 条记录，已处理到第 {i + len(batch)} 条记录")
+
+
+        except pymysql.err.OperationalError as e:
+            print(f"数据库连接失败：{e}")
+            raise
+
+
+
+    def comment_insert_sql(self, db_config_slave, insertDatas, database_name, batch_size=1000):
+        """
+        批量插入数据到数据库B中的mac_vod表。
+        支持大批量数据的分批插入。
+
+        Args:
+            db_config_slave (dict): 数据库连接配置。
+            documents (list of dict): 要插入的记录列表。
+            database_name (str): 数据库名称。
+            batch_size (int): 每批次插入的数据条数，默认 1000。
+        """
+        db_config_slave["database"] = database_name
+
+        print(f"需要写入的是：{db_config_slave}")
+
+        try:
+            # 连接到数据库
+            connection_comment = pymysql.connect(**db_config_slave)
+
+            with connection_comment.cursor() as cursor:
+
+                # SQL 插入语句
+                sql = """
+                        INSERT INTO comments (
+                            comment_mid, comment_rid, comment_pid, user_id, 
+                            comment_status, comment_name, comment_ip, comment_time, 
+                            comment_content, comment_up, comment_down, comment_reply, comment_report
+                        ) VALUES (
+                            %(comment_mid)s, %(comment_rid)s, %(comment_pid)s, %(user_id)s, 
+                            %(comment_status)s, %(comment_name)s, %(comment_ip)s, %(comment_time)s, 
+                            %(comment_content)s, %(comment_up)s, %(comment_down)s, %(comment_reply)s, %(comment_report)s
+                        )
+                        """
+                # 分批插入
+                for i in range(0, len(insertDatas), batch_size):
+                    batch = insertDatas[i:i + batch_size]
+                    cursor.executemany(sql, batch)
+                    connection_comment.commit()
+                    print(f"comment成功插入 {len(batch)} 条记录，已处理到第 {i + len(batch)} 条记录")
+
 
         except pymysql.err.OperationalError as e:
             print(f"数据库连接失败：{e}")
