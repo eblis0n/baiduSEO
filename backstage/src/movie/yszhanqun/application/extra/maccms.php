@@ -319,6 +319,12 @@ baiduspider',
     'actortype' => '',
     'websitetype' => '',
   ),
+  'category_map' => 
+  array (
+    'dy' => 'movie',
+    'dsj' => 'tv',
+    'zy' => 'variety',
+  ),  
   'pay' => 
   array (
     'min' => '10',
