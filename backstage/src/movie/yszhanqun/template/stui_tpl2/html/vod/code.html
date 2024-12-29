@@ -1,0 +1,20 @@
+
+
+<div class="ewave-pannel ewave-pannel-bg clearfix">  
+    <div class="ewave-pannel-box clearfix">  
+      <div class="rating-box" id="rating-main" style="display: block;">  
+        <div class="rating-total fn-clear">  
+          <div class="rating-total-item raty-score-bar" style="width:{php}echo $obj["vod_score"]*10; {/php}%;">&nbsp;</div>  
+          <div class="pingfen-total"><strong class="raty-score-num" id="pingfen">{$obj.vod_score}</strong><em class="raty-score-num" id="pingfen2">{$obj.vod_score}</em></div>  
+        </div>  
+        <div class="rating-panle">  
+          <div class="rating-bar">  
+            <div class="rating-bar-item raty-score-bar" id="fenshu" style="width:{php}echo $obj["vod_score"]*10; {/php}%;">&nbsp;</div>  
+          </div>  
+        </div>  
+      </div>  
+      <div class="rating-box" id="rating-kong" style="display: none;">  
+        <div class="rating-kong-item"><span class="loadingg">评分加载中...</span></div>  
+      </div>  
+    </div>  
+  </div>  

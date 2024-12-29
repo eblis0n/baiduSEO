@@ -1,0 +1,51 @@
+此程序为技术学习使用，不提供任何形式的免费服务。使用者不得将本系统应用于任何形式的非法用途，由此产生的一切法律风险，需由使用者自行承担，与本站和开发者无关。一旦下载、安装、使用，表示您即承认您已阅读、理解并同意受此条款的约束，并遵守所有相应法律和法规。如果您不同意此类条款，请不要使用本程序。
+
+
+
+按照顺序来操作：
+
+服务器环境linux CentOS Nginx php7.2 数据库5.6+  
+
+导入根目录的.sql数据库
+
+修改application\database.php
+
+伪静态选择thinkphp
+
+后台登录地址
+
+域名/xwdadmin.php
+
+账号密码 admin
+
+授权秘钥放到application/extra/appkey.php
+
+用文件缓存不要用redis
+
+
+
+搭建多个站点用授权域名的二级搭建新站点 用站群模式管理新的域名
+
+开源版无需授权
+
+
+
+
+
+伪静态规则：location ~* (runtime|application)/{
+
+return 403;
+
+}
+
+location / {
+
+rewrite ^/ditu(.*).txt /ditu.php last; 
+
+if (!-e $request_filename){
+
+rewrite  ^(.*)$  /index.php?s=$1  last;   break;
+
+}
+
+}

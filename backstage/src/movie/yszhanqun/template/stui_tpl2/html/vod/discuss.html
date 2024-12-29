@@ -1,0 +1,34 @@
+<div class="stui-pannel stui-pannel-bg clearfix" id="desc">
+	<div class="stui-pannel-box">
+		<div class="stui-pannel_hd">
+			<div class="stui-pannel__head active bottom-line clearfix">
+				<h3 class="title">
+					<img src="{$maccms.path}statics/icon/icon_30.png"/>
+					用户评价 
+				</h3>						
+			</div>																		
+		</div>
+		<div class="stui-pannel_bd">
+		    
+		
+		{maccms:comment order="desc" by="time" num="10"}
+		{if condition="$vo.comment_mid eq $obj.vod_id"}
+            <div class="stui-pannel stui-pannel-bg clearfix">
+                <div class="stui-pannel-box clearfix">
+                    <div class="col-pd">
+                        <div class="bottom-line">
+                            <span class="text-muted pull-right">{$vo.comment_ip|mac_long2ip}</span>
+                            <h4 class="title" style="margin: 0 0 10px; padding-bottom: 10px;">{$vo.comment_mid}点评昵称: {$vo.comment_name}</h4>
+                        </div>
+                        <p class="con">{$vo.comment_content}</p>
+                        <p class="text-muted font-12">{$vo.comment_time|date='Y-m-d H:i:s',###}</p>
+                    </div>   	    			  	    			
+                </div>
+            </div>
+            {/if}
+            {/maccms:comment}
+            
+            
+		</div>			
+	</div>						
+</div>

@@ -1,0 +1,11 @@
+location / {
+
+rewrite ^/ditu(.*).txt /ditu.php last; 
+
+if (!-e $request_filename){
+
+rewrite  ^(.*)$  /index.php?s=$1  last;   break;
+
+}
+
+}

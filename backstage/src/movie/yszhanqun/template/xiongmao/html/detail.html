@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+		<title>《{xwd_固定标题}》_电影{xwd_固定标题} _{$maccms.site_name}</title>
+	<meta name="keywords" content="全集,{xwd_固定标题}免费观看以及免费在线下载" />
+<meta name="description" content="【{$maccms.site_name}】为你提供好看的{xwd_固定标题}，电影，{xwd_固定标题}剧情:<?php echo str_replace("\n",' ',strip_tags($obj['vod_content'])); ?>" />
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+
+<div class="vod-info gap clearfix{if $maccms.aid==15} hidden-lg hidden-xl hidden-xxl{/if}">
+    <div class="pic"><img class="lazyload" src="{$maccms.path_tpl}images/load.gif" data-original="{$obj.vod_pic|mac_url_img}"></div>
+    <div class="info">
+      <h3><a href="{$obj|mac_url_vod_detail}"{if !empty($obj.vod_color)} style="color:#{$obj.vod_color};"{/if}><h1>《{xwd_固定标题}》</h1>	</a></h3>
+      <p class="row">
+        <span class="col-xs-12 col-sm-6 col-md-12 text-overflow">分类：<a href="{$obj.type|mac_url_type}">{$obj.type.type_name}</a>{if !empty($obj.vod_class)}{maccms:foreach name=":explode(',',$obj.vod_class)"}<a href="{:mac_url_type($obj.type,['class'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{/if}</span>
+        <span class="col-xs-6 col-md-4 text-overflow">地区：{if !empty($obj.vod_area)}{maccms:foreach name=":explode(',',$obj.vod_area)"}<a href="{:mac_url_type($obj.type,['area'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{else/}未知{/if}</span>
+        <span class="col-xs-6 col-md-4 text-overflow">年份：{if !empty($obj.vod_year)}{maccms:foreach name=":explode(',',$obj.vod_year)"}<a href="{:mac_url_type($obj.type,['year'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{else/}未知{/if}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow">导演：{$obj.vod_director|mac_url_create='director','vod','search',''}</span>
+        <span class="col-xs-12 text-row text-row-2">主演：{if !empty($obj.vod_actor)}{php}$spliter=array(' / ', '/', '|', ',', '，', ',,');{/php}{maccms:foreach name=":explode(',',trim(str_replace($spliter, ',', $obj.vod_actor),','))" id="actor"}{php}$has_actor=0;{/php}{maccms:actor name="'.$actor.'" num="1" by="time" order="desc"}<a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a>{php}$has_actor=1;{/php}{/maccms:actor}{if $has_actor==0}<a href="{:mac_url('vod/search',['actor'=>$actor])}" target="_blank">{$actor}</a>{/if}{/maccms:foreach}{else/}未知{/if}</span>
+        <span class="col-xs-12">状态：{if ($obj.type.type_id == 1) || ($obj.type_id_1 == 1)||($obj.type.type_name == '电影') || ($obj.type_1.type_name == '电影')}{$obj.vod_remarks|default='高清'}{elseif !empty($obj.vod_remarks)/}{$obj.vod_remarks}{elseif !empty($obj.vod_serial)/}更新至第{$obj.vod_serial}集{else/}全集{/if}</span>
+      </p>
+      <div class="text text-row text-row-2">简介：{xwd_描述} </div>
+      <div class="btn-box">{if !empty($obj.vod_play_list) && $maccms.aid!=15 && (empty($obj.vod_copyright) || ($GLOBALS.config.app.copyright_status == 0)||($GLOBALS.config.app.copyright_status gt 2))}<a href="{$obj|mac_url_vod_play}"><i class="fa fa-play-circle-o"></i>立即播放</a>{/if}{if $GLOBALS.config.user.status==1}<a  class="fav-btn ewave-ulog ewave-ulog-get ewave-ulog-get-{$obj.vod_id}" href="javascript:;" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-type="2"><i class="fa fa-heart-o"></i>收藏</a>{/if}</div>
+      <div class="qrcode hidden-xs hidden-sm hidden-md">
+        <div class="img">
+          <div class="ewave-qrcode"></div>
+          <p>手机扫码观看</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="vod-bottom pt-10 row">
+    <div class="vod-left col-xs-12 col-xl-9">
+  
+      
+<div class="playlist-box layout-box gap"><div class="playlist-tab-box"><h2 class="hidden-xs">播放列表</h2><div class="playlist-tab ewave-swiper ewave-swiper-nav swiper-initialized swiper-horizontal swiper-pointer-events swiper-free-mode"><ul class="swiper-wrapper" id="swiper-wrapper-47faee34118325d5" aria-live="polite"><li class="swiper-slide ewave-tab active swiper-slide-active" data-target="#ewave-playlist-1" role="group" aria-label="1 / 1">
+熊猫播放器<em></em></li></ul><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div><div class="right ewave-sort" data-target=".ewave-playlist-sort-content:visible"><span><i class="fa fa-sort-amount-asc"></i></span>正序</div></div><div class="episode-box scrollbar"><ul class="row ewave-tab-content ewave-playlist-content ewave-playlist-sort-content" id="ewave-playlist-1">
+   
+    
+    	{php}
+				for ($i=1; $i< rand(20,200); $i+=1) {
+					echo ' <li class="col-xs-4 col-sm-3 col-md-2 ewave-playlist-item ewave-width-auto"><a class="text-overflow" href="/{xwd_播放页目录}/{xwd_固定日期2}/{xwd_随机5-8字符}.html">第'.$i.'集</a></li>';
+					}
+			{/php}
+   </ul></div></div>
+      
+      
+      
+      {if !empty($obj.vod_content)}
+      <div class="vod-list layout-box gap">
+        <h2>内容简介</h2>
+        <div class="more-box">
+          <p class="pt-10 pb-10" style="line-height: 2;"><huancun>{xwd_gpt内容}</huancun></p>
+        </div>
+      </div>
+      {/if}
+      {include file="block/vod_downlist"}
+      {include file="block/vod_related"}
+      {if !empty($obj.vod_rel_art)}
+      <div class="layout-box clearfix gap">
+        <div class="art-box">
+          <h2>相关资讯</h2>
+          <ul class="art-list clearfix">
+            {maccms:art ids="'.$obj['vod_rel_art'].'" by="time" order="desc"}
+            {include file="block/art_item"}
+            {/maccms:art}
+          </ul>
+        </div>
+      </div>
+      {/if}
+      {include file="block/comment"}
+    </div>
+    <div class="vod-right col-xs-12 col-xl-3 ewave-sticky hidden-xs hidden-sm hidden-md hidden-lg">
+      <div class="layout-box clearfix gap">
+        <div class="hot">
+          <h2>{$obj.type.type_name}排行榜</h2>
+          <ul class="ranking-list">
+            {maccms:vod type="current" num="10" by="hits_week" order="desc"}
+            <li class="ranking-item">{include file="block/vod_item_ranking"}</li>
+            {/maccms:vod}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+<span class="mac_hits hide" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="insert"></span>
+<span class="mac_ulog_set hide" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="" data-nid=""></span>
+</body>
+</html>

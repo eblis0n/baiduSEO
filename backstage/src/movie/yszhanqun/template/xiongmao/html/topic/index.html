@@ -1,0 +1,25 @@
+<!-- /*                  熊猫站群 www.xiongmao666.com                                 */ --用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="layout-box clearfix gap">
+    <div class="vod-topic">
+      <h2><a href="{:mac_url_topic_index()}">精彩专题</a></h2>
+      <ul class="row">
+        {maccms:topic num="20" paging="yes" by="time" order="desc"}
+        <li class="col-xs-12 col-md-6 col-lg-4">{include file="block/topic_item"}</li>
+        {/maccms:topic}
+      </ul>
+      {include file="block/paging"}
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

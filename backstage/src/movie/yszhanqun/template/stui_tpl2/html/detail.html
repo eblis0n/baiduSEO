@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html><head>
+<title>《{xwd_固定标题}》 _{万能固定:leixing}{xwd_固定标题} _{$maccms.site_name}</title>
+<meta name="keywords" content="全集,{xwd_固定标题}免费观看以及免费在线下载" />
+<meta name="description" content="【{$maccms.site_name}】为你提供好看的{xwd_固定标题}，电影，{xwd_固定标题}剧情:{xwd_描述}" />  
+	{include file="block/include"}
+</head>
+<body>
+
+	{include file="block/head"}
+
+    <div class="container">
+        <div class="row">     
+            <div class="col-lg-wide-75 col-xs-1 padding-0">	
+            	<!-- 详细信息-->
+            	<div class="stui-pannel stui-pannel-bg clearfix">
+					<div class="stui-pannel-box">
+						<div class="col-pd clearfix">	
+							<span class="text-muted">当前位置 <i class="icon iconfont icon-more"></i></span> 
+							<a href="{$maccms.path}">首页</a> <i class="icon iconfont icon-more"></i><a href="{:mac_url_type($obj,[],'show')}">{$obj.type.type_name}</a> <i class="icon iconfont icon-more"></i> 
+						
+
+
+							<span class="text-muted">《{xwd_固定标题}》</span> 
+						</div>
+						<div class="col-pd clearfix">
+							<div class="stui-content__thumb">									
+								<a class="stui-vodlist__thumb picture v-thumb" href="/{xwd_随机5字符}_{xwd_随机2-5位数}.html" title="《{xwd_固定标题}》">
+									<huancun>	<img class="lazyload" src="{$maccms.path}statics/img/load.gif" data-original="{:randpic('img')}"/></huancun>
+								
+									
+									<span class="play active hidden-xs"></span>
+									<span class="pic-text text-right">{if condition="$obj.vod_remarks neq ''"}{$obj.vod_remarks}{elseif condition="$obj.vod_serial gt 0"}第{$obj.vod_serial}集{else /}已完结{/if}</span>
+								</a>					
+							</div>
+							<div class="stui-content__detail">
+								<h1>《{xwd_固定标题}》</h1>	<span class="score text-red">{$obj.vod_score}</span>	
+								<p class="data">
+									<span class="text-muted">类型：</span>
+
+									{$obj.vod_class|mac_url_create='class'}
+
+									<span class="split-line"></span>
+									<span class="text-muted hidden-xs">地区：</span>{$obj.vod_area|mac_url_create='area'}
+									<span class="split-line"></span>
+									<span class="text-muted hidden-xs">年份：</span>{$obj.vod_year|mac_url_create='year'}								
+								</p>
+								<p class="data"><span class="text-muted">主演：</span>{$obj.vod_actor|mac_substring=35|mac_url_create='actor'}</p>
+								<p class="data"><span class="text-muted">导演：</span>{$obj.vod_director|mac_url_create='director'}</p>
+								<p class="data hidden-sm"><span class="text-muted">更新：</span>{$obj.vod_time|date='Y-m-d H:i:s',###}</p>												
+								<p class="desc hidden-xs">
+									<span class="left text-muted">简介：</span>
+									
+									{xwd_描述}
+									<a href="#desc">详情 <i class="icon iconfont icon-moreunfold"></i></a>
+								</p>							    
+								<div class="play-btn clearfix">
+									<div class="share bdsharebuttonbox hidden-sm hidden-xs pull-right"></div>
+									<a class="btn btn-primary" href="/play/{xwd_随机5字符}/{xwd_随机2-5位数}.html">立即播放</a>
+									{if condition="$maccms.user_status eq 1"}								
+									&nbsp;&nbsp;<a href="javascript:void(0);" class="mac_ulog btn btn-default" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}">收藏</a>
+									{/if}										
+									<!--<span class="bdsharebuttonbox hidden-xs"><a href="javascript:;" class="btn btn-default bds_btn" data-cmd="more">分享</a></span>-->
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- end 详细信息-->
+
+<div class="stui-pannel stui-pannel-bg clearfix">
+	<div class="stui-pannel-box b playlist mb">
+		<div class="stui-pannel_hd">
+			<div class="stui-pannel__head bottom-line active clearfix">
+				<span class="more text-muted pull-right"></span>
+				<h3 class="title">
+					<img src="/statics/icon/icon_30.png">
+					@xwd播放器				</h3>						
+			</div>					 													
+		</div>
+		<div class="stui-pannel_bd col-pd clearfix">
+			<ul class="stui-content__playlist clearfix">
+			{php}
+				for ($i=1; $i< rand(20,200); $i+=1) {
+					echo '<li><a href="/{xwd_播放页目录}/{xwd_固定日期2}/{xwd_随机5-8字符}.html">第'.$i.'集</a></li>';
+					}
+			{/php}
+            </ul>
+		</div>
+	</div>
+</div>
+<!-- 播放地址-->
+
+				<div class="stui-pannel stui-pannel-bg clearfix" id="desc">
+	<div class="stui-pannel-box">
+		<div class="stui-pannel_hd">
+			<div class="stui-pannel__head active bottom-line clearfix">
+				<h3 class="title">
+					<img src="{$maccms.path}statics/icon/icon_30.png"/>
+					剧情简介
+				</h3>						
+			</div>																		
+		</div> 
+		<div class="stui-pannel_bd">
+			<p class="col-pd">
+				<huancun>{xwd_gpt内容}</huancun><h3>【{$obj.vod_name}的相关新闻】</h3>{$obj.news}
+			</p>				
+		</div>			
+	</div>						
+</div>
+				<!-- 剧情简介-->
+			<div class="stui-pannel stui-pannel-bg clearfix">
+	<div class="stui-pannel-box">
+		<div class="stui-pannel_hd">
+			<div class="stui-pannel__head active bottom-line clearfix">
+				<h3 class="title">
+					<img src="{$maccms.path}statics/icon/icon_6.png"/>
+					猜你喜欢
+				</h3>						
+			</div>																		
+		</div>
+		<div class="stui-pannel_bd">
+			<ul class="stui-vodlist__bd clearfix">
+				{maccms:vod num="12" type="current" order="desc" by="time"}
+				<li class="col-md-6 col-sm-4 col-xs-3 {if condition="$key gt 8"}hidden-md{/if}">
+					{include file="block/vod_box"}														
+				</li>			
+				{/maccms:vod}
+			</ul>	
+		<div class="ewave-pannel-box">
+          <div class="ewave-pannel_hd">
+            <div class="ewave-pannel__head active bottom-line clearfix">
+              <h3 class="title">💟相关问题 </h3>
+            </div>
+          </div>
+          <div class="ewave-pannel_bd">
+                    <p style="margin: 0 0 5px;"><b>1.请问哪个网站可以免费在线观看动漫《{xwd_固定标题}》？</b></p><p style="margin: 0 0 5px;">优酷视频网友：{php}$currentUrl .= "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  
+  
+echo $currentUrl; {/php}</p><p style="margin: 0 0 5px;"><b>2.《{xwd_固定标题}》是什么时候上映/什么时候开播的？</b></p><p style="margin: 0 0 5px;">腾讯视频网友：上映时间为2022年，详细日期可以去<a rel="nofollow" href="https://baike.baidu.com" target="_blank">百度百科</a>查一查。</p>
+                    <p style="margin: 0 0 5px;"><b>3.《{xwd_固定标题}》是哪些演员主演的？</b></p><p style="margin: 0 0 5px;">爱奇艺网友：{xwd_固定标题}演员表有,导演是。</p><p style="margin: 0 0 5px;"><b>4.动漫《{xwd_固定标题}》一共多少集？</b></p><p style="margin: 0 0 5px;">电影吧网友：目前已更新到全集已完结</p><p style="margin: 0 0 5px;"><b>5.手机免费在线点播《{xwd_固定标题}》有哪些网站？</b></p><p style="margin: 0 0 5px;">手机电影网网友：美剧网、腾讯视频、电影网</p><p style="margin: 0 0 5px;"><b>6.《{xwd_固定标题}》评价怎么样？</b></p><p style="margin: 0 0 5px;">百度最佳答案：《{xwd_固定标题}》口碑不错，演员阵容强大演技炸裂，并且演员的演技一直在线，全程无尿点。你也可以登录百度问答获得更多评价。</p>
+                                <li><a href="https://www.baidu.com/s?wd=百度百科&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}百度百科</a>&nbsp;<a href="https://www.baidu.com/s?wd={xwd_固定标题}原著&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}版原著</a>&nbsp;<a href="https://www.baidu.com/s?wd={xwd_固定标题}什么时候播&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}什么时候播</a>&nbsp;<a href="https://www.baidu.com/s?wd={xwd_固定标题}在线免费观看&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}在线免费观看</a>&nbsp;<a href="https://www.baidu.com/s?wd={xwd_固定标题}演员表&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}演员表</a>&nbsp;<a href="https://www.baidu.com/s?wd={xwd_固定标题}大结局&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}大结局</a>&nbsp;<a href="https://www.baidu.com/s?wd={xwd_固定标题}说的是什么&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}说的是什么</a>&nbsp;<a href="https://www.baidu.com/s?wd={xwd_固定标题}图片&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}图片</a>&nbsp;<a href="https://www.baidu.com/s?wd=在线{xwd_固定标题}好看吗&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">在线{xwd_固定标题}好看吗</a>&nbsp;<a href="https://www.baidu.com/s?wd=剧情介绍&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}剧情介绍</a>&nbsp; &nbsp; &nbsp; <a href="https://www.baidu.com/s?wd={xwd_固定标题}角色介绍&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}角色介绍</a>&nbsp;<a href="https://www.baidu.com/s?wd={xwd_固定标题}上映时间&amp;si=www.riverhotels.cn&amp;ct=2097152" target="_blank" rel="nofollow">{xwd_固定标题}上映时间</a>&nbsp;</li>
+          </div>
+        </div>
+		</div>			
+	</div>						
+</div>
+
+			<!-- 猜你喜欢-->
+				
+
+			</div>				
+			<div class="col-lg-wide-25 col-xs-1 stui-pannel-side hidden-sm hidden-xs">	
+				{include file="vod/code"}<!-- 扫码-->
+				
+
+<div class="stui-pannel stui-pannel-bg clearfix">
+	<div class="stui-pannel-box">
+		<div class="stui-pannel_hd">
+			<div class="stui-pannel__head active bottom-line clearfix">
+				<h3 class="title">
+					<img src="{$maccms.path}statics/icon/icon_12.png"/>
+					{$obj.type.type_name}周榜单
+				</h3>						
+			</div>																		
+		</div>
+		<div class="stui-pannel_bd">
+			<ul class="stui-vodlist__text col-pd clearfix">
+				{maccms:vod num="10"  order="desc" by="hits_week"}
+					<li class="bottom-line-dot">
+	<a href="{xwd_域名协议}{xwd_当前域名}/{xwd_随机5字符}_{xwd_随机2-5位数}.html" title="{$vo.vod_name}">
+		<span class="text-muted pull-right hidden-md">
+			{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks|mac_substring=8}{elseif condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集{else /}已完结{/if}
+		</span>
+		<span class="badge{if condition="$key eq 1"} badge-first{/if}{if condition="$key eq 2"} badge-second{/if}{if condition="$key eq 3"} badge-third{/if}">{$key}</span>{$vo.vod_name}</a>
+</li>
+				{/maccms:vod}
+			</ul>	
+		</div>
+	</div>
+</div>
+
+
+
+<div class="stui-pannel stui-pannel-bg clearfix">
+	<div class="stui-pannel-box">
+		<div class="stui-pannel_hd">
+			<div class="stui-pannel__head active bottom-line clearfix">
+				<h3 class="title">
+					<img src="{$maccms.path}statics/icon/icon_12.png"/>
+					{$obj.type.type_name}月榜单
+				</h3>						
+			</div>																		
+		</div>
+		<div class="stui-pannel_bd">
+			<ul class="stui-vodlist__text col-pd clearfix">
+				{maccms:vod num="10"  order="desc" by="hits_month"}
+				<li class="bottom-line-dot">
+	<a href="{xwd_随机链接}" title="{$vo.vod_name}">
+		<span class="text-muted pull-right hidden-md">
+			{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks|mac_substring=8}{elseif condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集{else /}已完结{/if}
+		</span>
+		<span class="badge{if condition="$key eq 1"} badge-first{/if}{if condition="$key eq 2"} badge-second{/if}{if condition="$key eq 3"} badge-third{/if}">{$key}</span>{$vo.vod_name}</a>
+</li>
+				{/maccms:vod}
+			</ul>	
+		</div>
+	</div>
+</div>
+
+				<!-- 热播-->				
+			</div>
+        </div>
+    </div>
+  
+{include file="block/foot"}
+</body>
+</html>

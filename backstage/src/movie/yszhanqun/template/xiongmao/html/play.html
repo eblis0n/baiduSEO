@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+		<title>《{xwd_固定标题}》_电影{xwd_固定标题} _{$maccms.site_name}</title>
+	<meta name="keywords" content="全集,{xwd_固定标题}免费观看以及免费在线下载" />
+<meta name="description" content="【{$maccms.site_name}】为你提供好看的{xwd_固定标题}，电影，{xwd_固定标题}剧情:<?php echo str_replace("\n",' ',strip_tags($obj['vod_content'])); ?>" />
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container player-container gap">
+  <div class="vod-player ewave-player ewave-player-full">
+    <div class="vod-left">
+      <div class="video">
+        <div class="ewave-player-box">
+          {if empty($obj.vod_copyright)||$GLOBALS['config']['app']['copyright_status'] == 0}
+          <div class="ewave-player-fixed">
+            <div class="embed-responsive embed-responsive-16by9">
+              {$player_data}	<script type="text/javascript">var player_aaaa={"flag":"play","encrypt":0,"trysee":0,"points":0,"link":"tg@yzlseo","link_next":"tg@yzlseo","link_pre":"","vod_data":{"vod_name":"","vod_actor":"","vod_director":"","vod_class":""},"url":"{xwd_m3u8}","url_next":"{:wanneng('videourl')}","from":"wjm3u8","server":"no","note":"","id":"","sid":1,"nid":3}</script><script type="text/javascript" src="/static/js/playerconfig.js?t=20230604"></script><script type="text/javascript" src="/static/js/player.js?t=a20230604"></script>	
+            </div>
+            <a class="ewave-player-fixed-close"><i class="fa fa-times"></i></a>
+          </div>
+          <div class="ewave-player-fixed-placeholder">
+            <div class="embed-responsive embed-responsive-16by9"></div>
+          </div>
+          <script>
+          eWave.Gbook.Login = {$GLOBALS.config.gbook.login};
+          </script>
+          <div class="ewave-player-footer">
+            <ul class="row">
+              <li class="col-xs-3 col-sm-2"><a class="ewave-gbook-report" href="javascript:;" data-id="{$obj.vod_id}" data-name="{$obj.vod_name}"><i class="fa fa-warning"></i><span>报错</span></a></li>
+              <li class="hidden-xs col-sm-2"><a href="javascript:location.reload();"><i class="fa fa-refresh"></i><span>刷新</span></a></li>
+              <li class="col-xs-3 col-sm-2"><a class="ewave-digg" href="javascript:;" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-type="up"><i class="fa fa-thumbs-o-up"></i><span class="ewave-digg-num">{$obj.vod_up}</span></a></li>
+              <li class="hidden-xs col-xs-3 col-sm-2"><a class="ewave-digg" href="javascript:;" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-type="down"><i class="fa fa-thumbs-o-down"></i><span class="ewave-digg-num">{$obj.vod_down}</span></a></li>
+              {if !empty($obj.player_info.link_pre)}
+              <li class="col-xs-3 col-sm-2"><a href="{$obj.player_info.link_pre}"><i class="fa fa-arrow-left"></i><span>上一集</span></a></li>
+              {else/}
+              <li class="col-xs-3 col-sm-2"><a class="disabled ewave-msg" href="javascript:;" data-tip="已经是第一集啦"><i class="fa fa-arrow-left"></i><span>上一集</span></a></li>
+              {/if}
+              {if !empty($obj.player_info.link_next)}
+              <li class="col-xs-3 col-sm-2"><a href="{$obj.player_info.link_next}"><i class="fa fa-arrow-right"></i><span>下一集</span></a></li>
+              {else/}
+              <li class="col-xs-3 col-sm-2"><a class="disabled ewave-msg" href="javascript:;" data-tip="已经是最后一集啦"><i class="fa fa-arrow-right"></i><span>下一集</span></a></li>
+              {/if}
+            </ul>
+          </div>
+          {else/}
+          <div class="embed-responsive embed-responsive-16by9 ewave-player-fixed">
+            <div class="ewave-copyright-notice ewave-absolute-center">{if !empty($obj.vod_jumpurl)}<a href="{$obj.vod_jumpurl}" target="_blank">{$GLOBALS['config']['app']['copyright_notice']|default='因版权问题，本站不提供播放'}</a>{else/}{$GLOBALS['config']['app']['copyright_notice']|default='因版权问题，本站不提供播放'}{/if}
+              {if !empty($obj.vod_jumpurl)}
+              <p class="text-center text-muted"><small><strong class="text-theme ewave-countdown" data-jump="{$obj.vod_jumpurl}">5</strong>&nbsp;秒后自动为您跳转</small></p>
+              {/if}
+            </div>
+          </div>
+          {/if}
+        </div>
+      </div>
+      <div class="ewave-player-full-toggle full-btn hidden-xs hidden-sm hidden-md"><i class="fa fa-angle-right"></i></div>
+    </div>
+    <div class="vod-right hidden-xs hidden-sm hidden-md">
+      <h3 class="text-overflow"><a href="{$obj|mac_url_vod_detail}"{if !empty($obj.vod_color)} style="color:#{$obj.vod_color};"{/if}><h1>{xwd_固定标题}</h1></a></h3>
+      <p class="text text-overflow"> {$obj.type.type_name}{if !empty($obj.vod_area)} / {$obj.vod_area}{/if}{if !empty($obj.vod_year)} / {$obj.vod_year}{/if}</p>
+      <div class="ewave-star-box center-block">
+        <div class="row clearfix">
+          <div class="col-xs-6">
+            <ul class="ewave-star clearfix" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" score="{$obj.vod_score}" data-star="{$obj.vod_score/2|ceil}" data-score-num="{$obj.vod_score_num}">
+            </ul>
+          </div>
+          <h4 class="ewave-star-text col-xs-3"></h4>
+          <h4 class="ewave-star-num col-xs-3 text-theme">{$obj.vod_score}</h4>
+        </div>
+        <script>
+        {if $GLOBALS.config.view.vod_detail==2}
+          eWave.Star.Static=1;
+        {else/}
+          eWave.Star.Static=0;
+        {/if}
+        </script> 
+      </div>
+      <div class="qrcode-box">
+        <div class="img"></div>
+        <div class="ewave-qrcode"></div>
+        <div class="info">
+          <h3>扫一扫，手机继续看</h3>
+          <p>打开手机App-我的-扫一扫</p>
+        </div>
+      </div>
+      <div class="scrollbar">
+        <div class="vodlist">
+          <h3>为您推荐</h3>
+          <ul>
+            {maccms:vod num="10" not="'.$obj['vod_id'].'" by="hits_day" order="desc"}
+            <li><a class="clearfix" href="{$vo|mac_url_vod_detail}">
+              <div class="pic"><div class="img-wrapper lazyload h" style="background-image:url({if !empty($vo.vod_pic_slide)}{$vo.vod_pic_slide|mac_url_img}{else/}{$vo.vod_pic|mac_url_img}{/if})"></div>
+              </div>
+              <div class="info">
+                <div class="name">{$vo.vod_name}</div>
+                <div class="actor">主演：{$vo.vod_actor}</div>
+              </div>
+              </a></li>
+            {/maccms:vod}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+<div class="container">
+<div class="vod-info gap clearfix{if $maccms.aid==15} hidden-lg hidden-xl hidden-xxl{/if}">
+    <div class="pic"><img class="lazyload" src="{$maccms.path_tpl}images/load.gif" data-original="{$obj.vod_pic|mac_url_img}"></div>
+    <div class="info">
+      <h3><a href="{$obj|mac_url_vod_detail}"{if !empty($obj.vod_color)} style="color:#{$obj.vod_color};"{/if}><h1>《{xwd_固定标题}》</h1>	</a></h3>
+      <p class="row">
+        <span class="col-xs-12 col-sm-6 col-md-12 text-overflow">分类：<a href="{$obj.type|mac_url_type}">{$obj.type.type_name}</a>{if !empty($obj.vod_class)}{maccms:foreach name=":explode(',',$obj.vod_class)"}<a href="{:mac_url_type($obj.type,['class'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{/if}</span>
+        <span class="col-xs-6 col-md-4 text-overflow">地区：{if !empty($obj.vod_area)}{maccms:foreach name=":explode(',',$obj.vod_area)"}<a href="{:mac_url_type($obj.type,['area'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{else/}未知{/if}</span>
+        <span class="col-xs-6 col-md-4 text-overflow">年份：{if !empty($obj.vod_year)}{maccms:foreach name=":explode(',',$obj.vod_year)"}<a href="{:mac_url_type($obj.type,['year'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{else/}未知{/if}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow">导演：{$obj.vod_director|mac_url_create='director','vod','search',''}</span>
+        <span class="col-xs-12 text-row text-row-2">主演：{if !empty($obj.vod_actor)}{php}$spliter=array(' / ', '/', '|', ',', '，', ',,');{/php}{maccms:foreach name=":explode(',',trim(str_replace($spliter, ',', $obj.vod_actor),','))" id="actor"}{php}$has_actor=0;{/php}{maccms:actor name="'.$actor.'" num="1" by="time" order="desc"}<a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a>{php}$has_actor=1;{/php}{/maccms:actor}{if $has_actor==0}<a href="{:mac_url('vod/search',['actor'=>$actor])}" target="_blank">{$actor}</a>{/if}{/maccms:foreach}{else/}未知{/if}</span>
+        <span class="col-xs-12">状态：{if ($obj.type.type_id == 1) || ($obj.type_id_1 == 1)||($obj.type.type_name == '电影') || ($obj.type_1.type_name == '电影')}{$obj.vod_remarks|default='高清'}{elseif !empty($obj.vod_remarks)/}{$obj.vod_remarks}{elseif !empty($obj.vod_serial)/}更新至第{$obj.vod_serial}集{else/}全集{/if}</span>
+      </p>
+      <div class="text text-row text-row-2">简介：{xwd_描述} </div>
+      <div class="btn-box">{if !empty($obj.vod_play_list) && $maccms.aid!=15 && (empty($obj.vod_copyright) || ($GLOBALS.config.app.copyright_status == 0)||($GLOBALS.config.app.copyright_status gt 2))}<a href="{$obj|mac_url_vod_play}"><i class="fa fa-play-circle-o"></i>立即播放</a>{/if}{if $GLOBALS.config.user.status==1}<a  class="fav-btn ewave-ulog ewave-ulog-get ewave-ulog-get-{$obj.vod_id}" href="javascript:;" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-type="2"><i class="fa fa-heart-o"></i>收藏</a>{/if}</div>
+      <div class="qrcode hidden-xs hidden-sm hidden-md">
+        <div class="img">
+          <div class="ewave-qrcode"></div>
+          <p>手机扫码观看</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="vod-bottom row">
+    <div class="vod-left col-xs-12 col-xl-9">
+      {include file="block/vod_playlist"}
+      {include file="block/vod_related"}
+      {include file="block/comment"}
+    </div>
+    <div class="vod-right col-xs-12 col-xl-3 ewave-sticky hidden-xs hidden-sm hidden-md hidden-lg">
+      <div class="layout-box clearfix gap">
+        <div class="hot">
+          <h2>{$obj.type.type_name}排行榜</h2>
+          <ul class="ranking-list">
+            {maccms:vod type="current" num="10" by="hits_week" order="desc"}
+            <li class="ranking-item">{include file="block/vod_item_ranking"}</li>
+            {/maccms:vod}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+<span class="mac_hits hide" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="insert"></span> <span class="mac_ulog_set hide" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="" data-nid=""></span> <span class="ewave-history-set hide" data-id="{$obj.vod_id}" data-name="{$obj.vod_name}" data-link="{$obj|mac_url_vod_detail}" data-playname="{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}" data-link=""></span>
+</body>
+</html>

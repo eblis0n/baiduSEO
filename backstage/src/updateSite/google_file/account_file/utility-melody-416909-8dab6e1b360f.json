@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "utility-melody-416909",
+  "private_key_id": "8dab6e1b360f22d5c050a7629c5c2945539cdbc4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCviC3MoRvHt+Mz\n9HyygVPhE9imcSoh9nnyqT6QVByn/ZhPbCcg/w2yx2+lHyxA62rTR0TiFuIWzSSy\nJf3y2IZf5Img9PhJdRlR+2RMoXoLlTgGXv4NMUzZ+9wDGbn7lmaEaN4KuPKBlvrz\nW409dkYFU54jIa5xc0CGFu1z2siyAvoqWO0QIh1djFU0i1nRExjvxN+oakMa4r96\nnnB9SBFPA5hap7JD+7xNzlAUJCC9ovF50WFLGtwXEvLSVJ023cxypD/kYTVNwaf5\n7SQxDTouxQ2tYJkI5LJN0ajGc9U/yIII9YlKEe9nND2leHB1zIzDrnVa2hZrdpsw\nFH3HcCS5AgMBAAECggEAA59bVpxCjwIYAcP7aNGrcfsvXuv58x57kMr2XBMoTj05\nDfaM7izlUvmzr6QvjR1upHKVlNblDpRoO/b1wTO/vi3guz4i+50biyoVfVFdy+xl\n7he6xXntfJgqh7PZtzv43KWvY2hCtPLxNeF/TjPpKQX7Pv1cdMHspHfHqbrrpmTJ\nk6Uyssi76t13g8HWdHEcpx0gVWNpFOCT1N3vbLvres3BMZlXfUxGpSgEPE+eWFGc\nxaeyO8lLpdKkVdj3dY1CPuD2MgIyXbYeNN9MB1cObXnem8utdxtOPaz3MfBAC/MO\ndAjwgyl0+JL8H+453TH7FeG9Sjc4XY6mRJkRobju2wKBgQDd75RWwvGpbu1VXHOa\nmJOn1dtbLzsnbpROrZYCmO6+vLT7PFUMj4pCgLLSzXsz3ex20GRdxNNJThV+o+2n\nd9OA9IyqFlox0Os0mu2G0ojPUjo8+KKRtesdo32+Q/Iw8sphRuhLkoZMW0rf0bTV\n01hQe93bcoPtr+h/Nz01H9uCJwKBgQDKeUXMuP8bhR6w31A05j5P1ws4GLM7Cfgv\nOemdv1/P7TYaQnfrJNMnkn6xK89RxYF2uyEiSSMOE/wBGf9dwGsmRe5/YX8KUa9h\nS/mr0rfyACpEUwUl7vv5vnJqGiEcvTc2yq8pEPxT08x2u8D+NdZS1KvxdSiHCSge\n9CPNweDOHwKBgQCITovh2atI78suQTDzQ0B0tWEbGOAQ8NZ/mBdpEvqXBRl2sHBf\n3Y0CGT87P16q1WNU+dqayLcn76A9/nqI/4xUSF5YXJAaxoCe94Ro6MeD5bHFHsPi\nEEQOGQqyn9KRA50Or9keCSkYnn1XB9oz9bDpBZqWHDgw9HgsIgYiqaVMwwKBgHM0\nsdyc3rsf8aieSBrxbz8qkv2mQEU1lPv6Lc1OWQwMYx5p96XaXDNGDcRtsxdKFDIk\no+PITaPzBw7xZfZISC+M1vmv1gNfGzV3b2avDW8rXOFng6Rj6Qffr2Zj27doioQo\nq6XoPkrMVqiwiE2dAIg87mEDUr4THbsPG1g2Gt3tAoGBALD6xCUMhAKZsgNFd1XV\neXgVtL9sxrbRWoNxW5Ik8kAmmnvmQwoDuvvQoggYHkrJkBICJJT1nnTsM7Jqkws3\nEzvFlZqE5zWyAj0VB9HHOlwHJztmPFdhb8gETR8UFWfU7SaK7xvQDuVrTuTdpBut\n1tAhNR/rn+o8UIbdLi9MEu8x\n-----END PRIVATE KEY-----\n",
+  "client_email": "sheets-go@utility-melody-416909.iam.gserviceaccount.com",
+  "client_id": "115919495461454093652",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sheets-go%40utility-melody-416909.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
