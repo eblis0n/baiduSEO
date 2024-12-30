@@ -102,21 +102,56 @@ class updateSiteData():
                             prompt = f"你是一个娱乐百事通，请写一段2000字左右的 娱乐趣闻；要求：1、内容必须为正面，不能出现粗言秽语；"
                             for _ in range(int(row[i])):
                                 data = {
-                                    "gbook_rid": 0,
-                                    "user_id": int(random.randint(1, 9999)),
-                                    "gbook_status": 1,
-                                    "gbook_name": "匿名",
-                                    "gbook_ip": f"{self.other.generate_china_ip()}",
-                                    "gbook_time": int(self.other.generate_random_timestamp(30)),
-                                    "gbook_reply_time": 0,
-                                    "gbook_content": f"{self.witchdatas(witch, AIbase, prompt)}",
-                                    "gbook_reply": ""
+                                    "type_id": 1,  # 类型 ID
+                                    "type_id_1": 0,  # 次类型 ID
+                                    "group_id": 0,  # 分组 ID
+                                    "art_name": "文章名称",  # 文章名称
+                                    "art_sub": "文章副标题",  # 文章副标题
+                                    "art_en": "article-en",  # 英文名称
+                                    "art_status": 1,  # 文章状态（如 1 表示启用）
+                                    "art_letter": "A",  # 首字母
+                                    "art_color": "FF0000",  # 颜色值
+                                    "art_from": "来源",  # 来源
+                                    "art_author": "作者",  # 作者
+                                    "art_tag": "标签1,标签2",  # 标签
+                                    "art_class": "分类",  # 分类
+                                    "art_pic": "/path/to/pic.jpg",  # 主图片路径
+                                    "art_pic_thumb": "/path/to/thumb.jpg",  # 缩略图路径
+                                    "art_pic_slide": "/path/to/slide.jpg",  # 幻灯片图路径
+                                    "art_pic_screenshot": None,  # 截图内容
+                                    "art_blurb": "简介内容",  # 简介
+                                    "art_remarks": "备注信息",  # 备注
+                                    "art_jumpurl": "/article/123",  # 跳转 URL
+                                    "art_tpl": "default",  # 模板类型
+                                    "art_level": 0,  # 等级
+                                    "art_lock": 0,  # 锁定状态
+                                    "art_points": 10,  # 积分
+                                    "art_points_detail": 5,  # 细节积分
+                                    "art_up": 100,  # 点赞数
+                                    "art_down": 10,  # 点踩数
+                                    "art_hits": 1000,  # 总点击数
+                                    "art_hits_day": 100,  # 日点击数
+                                    "art_hits_week": 300,  # 周点击数
+                                    "art_hits_month": 900,  # 月点击数
+                                    "art_time": 1672531199,  # 时间戳（UNIX 时间戳）
+                                    "art_time_add": 1672531199,  # 添加时间
+                                    "art_time_hits": 1672531199,  # 点击时间
+                                    "art_time_make": 1672531199,  # 生成时间
+                                    "art_score": 4.5,  # 评分
+                                    "art_score_all": 45,  # 总评分
+                                    "art_score_num": 10,  # 评分人数
+                                    "art_rel_art": "1,2,3",  # 相关文章 ID
+                                    "art_rel_vod": "4,5,6",  # 相关视频 ID
+                                    "art_pwd": "password",  # 密码
+                                    "art_pwd_url": "/download/123",  # 密码跳转 URL
+                                    "art_title": "文章标题内容",  # 文章标题
+                                    "art_note": "文章注释内容",  # 文章注释
+                                    "art_content": f"{self.witchdatas(witch, AIbase, prompt)}"  # 文章正文
                                 }
 
                                 artInsert.append(data)
-                            self.sql.batch_insert_comment_sql(db_config_slave, artInsert, database_name)
+                            self.sql.batch_insert_art_sql(db_config_slave, artInsert, database_name)
                         return row[i]
-
 
 
 
