@@ -98,8 +98,13 @@ class updateSiteData():
                         elif i == 4:
 
                             print(f"随机栏目 发布文章数量")
+
+                            self.sql.select_type_rand_sql(db_config_slave, database_name)
+
                             artInsert = []
                             prompt = f"你是一个娱乐百事通，请写一段2000字左右的 娱乐趣闻；要求：1、内容必须为正面，不能出现粗言秽语；"
+
+
                             for _ in range(int(row[i])):
                                 data = {
                                     "type_id": 1,  # 类型 ID

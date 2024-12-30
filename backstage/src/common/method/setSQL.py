@@ -36,7 +36,33 @@ class setSQL():
         except pymysql.err.OperationalError as e:
             print(f"数据库连接失败：{e}")
             raise
+    
+    def select_type_rand_sql(self, db_config_slave, database_name):
+        """
+            @Datetime ： 2024/12/31 01:22
+            @Author ：eblis
+            @Motto：简单描述用途
+        """
+        db_config_slave["database"] = database_name
 
+        try:
+            # 连接到数据库
+            connection = pymysql.connect(cursorclass=pymysql.cursors.DictCursor,**db_config_slave)
+
+            with connection.cursor() as cursor:
+                # SQL 插入语句
+                sql = """
+                            SELECT `type_id`, `type_pid` FROM `mac_type` WHERE  type_mid = 2 ORDER BY RAND() LIMIT 1;
+                        """
+
+                cursor.execute(sql)
+                samples = cursor.fetchall()
+                return samples
+
+        except pymysql.err.OperationalError as e:
+            print(f"数据库连接失败：{e}")
+            raise
+    
 
     def single_insert_vod_to_B(self, db_config_slave, random_documents, database_name):
         """
@@ -106,6 +132,8 @@ class setSQL():
         except pymysql.err.OperationalError as e:
             print(f"数据库连接失败：{e}")
             raise
+        
+    
 
     def batch_insert_art_sql(self, db_config_slave, insertDatas, database_name, batch_size=1000):
         """
