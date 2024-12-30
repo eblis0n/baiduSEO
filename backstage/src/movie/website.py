@@ -714,7 +714,7 @@ class website():
         except Exception as e:
             print(f"发生错误: {e}")
 
-    def witchdatas(self, witch, databasename):
+    def witchdatas(self, witch, new_db_config, databasename):
         """
             @Datetime ： 2024/12/28 00:52
             @Author ：eblis
@@ -723,11 +723,7 @@ class website():
 
         if witch == "nono":
             print("不ai，从指定库 将表数据导入")
-            new_db_config = {
-                'host': '127.0.0.1',
-                'user': 'root',
-                'password': 'abingou2016'
-            }
+
             documents = self.copy_database_datas(new_db_config, databasename)
 
             print(f"从指定库，一共复制了{len(documents)} 条数据")
@@ -792,7 +788,13 @@ if __name__ == '__main__':
     print(f"脚本开始运行时间:{formatted_time}")
 
     witch = "nono"
-    documents = ws.witchdatas(witch, "njrhzs_com")
+    # 指定数据库信息，
+    new_db_config = {
+        'host': '127.0.0.1',
+        'user': 'root',
+        'password': 'abingou2016'
+    }
+    documents = ws.witchdatas(witch, new_db_config, "bingo_t_com")
     # print(f"本批次数据使用：{documents}")
 
 

@@ -96,7 +96,25 @@ class updateSiteData():
                                 gbookInsert.append(data)
                             self.sql.batch_insert_comment_sql(db_config_slave, gbookInsert, database_name)
                         elif i == 4:
+
                             print(f"随机栏目 发布文章数量")
+                            artInsert = []
+                            prompt = f"你是一个娱乐百事通，请写一段2000字左右的 娱乐趣闻；要求：1、内容必须为正面，不能出现粗言秽语；"
+                            for _ in range(int(row[i])):
+                                data = {
+                                    "gbook_rid": 0,
+                                    "user_id": int(random.randint(1, 9999)),
+                                    "gbook_status": 1,
+                                    "gbook_name": "匿名",
+                                    "gbook_ip": f"{self.other.generate_china_ip()}",
+                                    "gbook_time": int(self.other.generate_random_timestamp(30)),
+                                    "gbook_reply_time": 0,
+                                    "gbook_content": f"{self.witchdatas(witch, AIbase, prompt)}",
+                                    "gbook_reply": ""
+                                }
+
+                                artInsert.append(data)
+                            self.sql.batch_insert_comment_sql(db_config_slave, artInsert, database_name)
                         return row[i]
 
 
