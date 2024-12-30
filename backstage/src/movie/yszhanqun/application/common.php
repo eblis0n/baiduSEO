@@ -1644,6 +1644,15 @@ function mac_url($_var_342, $_var_343 = [], $_var_344 = [])
 					case 2:
 						$_var_353 = mac_alphaID($_var_344["vod_id"], false, $_var_347["rewrite"]["encode_len"], $_var_347["rewrite"]["encode_key"]);
 						break;
+					case 3:
+						$_var_353 = $_var_344["vod_id"] . '-' . $_var_344["vod_en"];
+						break;
+					case 4:
+						$_var_353 = date('Y', $_var_344["vod_time"]) . '-' . $_var_344["vod_id"];
+						break;
+					case 5:
+						$_var_353 = $_var_344["type"]["type_en"] . '-' . $_var_344["vod_id"];
+						break;
 					default:
 						$_var_353 = $_var_344["vod_id"];
 						break;
@@ -2167,26 +2176,38 @@ function mac_url_search($param = [], $flag = 'vod')
 }
 function mac_url_type($_var_365, $_var_366 = [], $_var_367 = 'type')
 {
-	$_var_368 = "vod";
-	if ($_var_365["type_mid"] == 1) {
-	} else {
-		if ($_var_365["type_mid"] == 2) {
-			$_var_368 = "art";
-		} else {
-			if ($_var_365["type_mid"] == 8) {
-				$_var_368 = "actor";
-			} else {
-				if ($_var_365["type_mid"] == 11) {
-					$_var_368 = "website";
-				}
-			}
-		}
-	}
-	if (empty($_var_366["id"])) {
-		$_var_366["id"] = $_var_365["type_id"];
-	}
-	return mac_url($_var_368 . "/" . $_var_367, $_var_366, $_var_365);
+    $_var_368 = "vod";
+
+    // 根据 type_mid 确定分类
+    if ($_var_365["type_mid"] == 1) {
+    } else {
+        if ($_var_365["type_mid"] == 2) {
+            $_var_368 = "art";
+        } else {
+            if ($_var_365["type_mid"] == 8) {
+                $_var_368 = "actor";
+            } else {
+                if ($_var_365["type_mid"] == 11) {
+                    $_var_368 = "website";
+                }
+            }
+        }
+    }
+
+    // 添加映射逻辑
+    $category_map = config('maccms.category_map'); // 获取分类映射表
+    if (!empty($category_map) && isset($category_map[$_var_365['type_en']])) {
+        $_var_365['type_en'] = $category_map[$_var_365['type_en']];
+    }
+
+    if (empty($_var_366["id"])) {
+        $_var_366["id"] = $_var_365["type_id"];
+    }
+
+    // 调用 mac_url 返回最终 URL
+    return mac_url($_var_368 . "/" . $_var_367, $_var_366, $_var_365);
 }
+
 function mac_url_topic_index($param = [])
 {
 	return mac_url("topic/index", ["page" => $param["page"]]);
