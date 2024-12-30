@@ -792,7 +792,7 @@ if __name__ == '__main__':
     print(f"脚本开始运行时间:{formatted_time}")
 
     witch = "nono"
-    documents = ws.witchdatas(witch,"njrhzs_com")
+    documents = ws.witchdatas(witch, "njrhzs_com")
     # print(f"本批次数据使用：{documents}")
 
 
