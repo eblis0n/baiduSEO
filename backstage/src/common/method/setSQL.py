@@ -107,6 +107,54 @@ class setSQL():
             print(f"数据库连接失败：{e}")
             raise
 
+    def batch_insert_art_sql(self, db_config_slave, insertDatas, database_name, batch_size=1000):
+        """
+        批量插入数据到数据库中的art表。
+        支持大批量数据的分批插入。
+
+        Args:
+            db_config_slave (dict): 数据库连接配置。
+            insertDatas (list of dict): 要插入的记录列表。
+            database_name (str): 数据库名称。
+            batch_size (int): 每批次插入的数据条数，默认 1000。
+        """
+        db_config_slave["database"] = database_name
+
+        print(f"需要写入的是：{db_config_slave}")
+
+        try:
+            # 连接到数据库
+            connection_art = pymysql.connect(**db_config_slave)
+
+            with connection_art.cursor() as cursor:
+                # SQL 插入语句
+                sql = """
+                    INSERT INTO art (
+                        type_id, type_id_1, group_id, art_name, art_sub, art_en, art_status, art_letter,
+                        art_color, art_from, art_author, art_tag, art_class, art_pic, art_pic_thumb, art_pic_slide,
+                        art_pic_screenshot, art_blurb, art_remarks, art_jumpurl, art_tpl, art_level, art_lock,
+                        art_points, art_points_detail, art_up, art_down, art_hits, art_hits_day, art_hits_week,
+                        art_hits_month, art_time, art_time_add, art_time_hits, art_time_make, art_score, art_score_all,
+                        art_score_num, art_rel_art, art_rel_vod, art_pwd, art_pwd_url, art_title, art_note, art_content
+                    ) VALUES (
+                        %(type_id)s, %(type_id_1)s, %(group_id)s, %(art_name)s, %(art_sub)s, %(art_en)s, %(art_status)s, %(art_letter)s,
+                        %(art_color)s, %(art_from)s, %(art_author)s, %(art_tag)s, %(art_class)s, %(art_pic)s, %(art_pic_thumb)s, %(art_pic_slide)s,
+                        %(art_pic_screenshot)s, %(art_blurb)s, %(art_remarks)s, %(art_jumpurl)s, %(art_tpl)s, %(art_level)s, %(art_lock)s,
+                        %(art_points)s, %(art_points_detail)s, %(art_up)s, %(art_down)s, %(art_hits)s, %(art_hits_day)s, %(art_hits_week)s,
+                        %(art_hits_month)s, %(art_time)s, %(art_time_add)s, %(art_time_hits)s, %(art_time_make)s, %(art_score)s, %(art_score_all)s,
+                        %(art_score_num)s, %(art_rel_art)s, %(art_rel_vod)s, %(art_pwd)s, %(art_pwd_url)s, %(art_title)s, %(art_note)s, %(art_content)s
+                    )
+                """
+                # 分批插入
+                for i in range(0, len(insertDatas), batch_size):
+                    batch = insertDatas[i:i + batch_size]
+                    cursor.executemany(sql, batch)
+                    connection_art.commit()
+                    print(f"art成功插入 {len(batch)} 条记录，已处理到第 {i + len(batch)} 条记录")
+
+        except pymysql.err.OperationalError as e:
+            print(f"数据库连接失败：{e}")
+            raise
 
 
     def batch_insert_comment_sql(self, db_config_slave, insertDatas, database_name, batch_size=1000):
