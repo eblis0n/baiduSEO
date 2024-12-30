@@ -8,7 +8,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">{:lang('vod')}{:lang('type')}：</label>
                 <div class="layui-input-inline">
-                    <select name="vodtype[]" multiple style="width:150px;height:150px;" lay-ignore>
+                    <select name="vodclass[]" multiple style="width:150px;height:150px;" lay-ignore>
                         {volist name="$vod_type_list" id="vo"}
                         <option value="{$vo.type_id}" >{$vo.type_name}</option>
                         {/volist}
@@ -17,13 +17,13 @@
                 <div class="layui-input-inline w300">
                     <div class="layui-btn-container">
                     <input type="button" value="{:lang('admin/make/select_type')}" class="layui-btn layui-btn-primary" onclick="post('ac=type&tab=vod');"/>
-                    <input type="button" value="{:lang('admin/make/all_type')}" class="layui-btn layui-btn-primary" onclick="post('ac=type&tab=vod&vodtype={$vod_type_ids}');"/>
-                    <input type="button" value="{:lang('admin/make/today_type')}" class="layui-btn layui-btn-primary" onclick="post('ac=type&tab=vod&vodtype={$vod_type_ids_today}&ac2=day');"/>
+                    <input type="button" value="{:lang('admin/make/all_type')}" class="layui-btn layui-btn-primary" onclick="post('ac=type&tab=vod&vodclass={$vod_type_ids}');"/>
+                    <input type="button" value="{:lang('admin/make/today_type')}" class="layui-btn layui-btn-primary" onclick="post('ac=type&tab=vod&vodclass={$vod_type_ids_today}&ac2=day');"/>
                     <input type="button" value="{:lang('admin/make/select_info')}" class="layui-btn layui-btn-primary" onclick="post('ac=info&tab=vod');"/>
-                    <input type="button" value="{:lang('admin/make/all_info')}" class="layui-btn layui-btn-primary" onclick="post('ac=info&tab=vod&vodtype={$vod_type_ids}');"/>
-                    <input type="button" value="{:lang('admin/make/today_info')}" class="layui-btn layui-btn-primary" onclick="post('ac=info&tab=vod&vodtype={$vod_type_ids_today}&ac2=day');"/>
+                    <input type="button" value="{:lang('admin/make/all_info')}" class="layui-btn layui-btn-primary" onclick="post('ac=info&tab=vod&vodclass={$vod_type_ids}');"/>
+                    <input type="button" value="{:lang('admin/make/today_info')}" class="layui-btn layui-btn-primary" onclick="post('ac=info&tab=vod&vodclass={$vod_type_ids_today}&ac2=day');"/>
                     <input type="button" value="{:lang('admin/make/no_make_info')}" class="layui-btn layui-btn-primary" onclick="post('ac=info&tab=vod&ac2=nomake');"/>
-                    <input type="button" value="{:lang('admin/make/one_today')}" class="layui-btn layui-btn-primary" onclick="post('ac=info&tab=vod&vodtype={$vod_type_ids_today}&ac2=day&jump=1');"/>
+                    <input type="button" value="{:lang('admin/make/one_today')}" class="layui-btn layui-btn-primary" onclick="post('ac=info&tab=vod&vodclass={$vod_type_ids_today}&ac2=day&jump=1');"/>
                     </div>
                 </div>
                 <label class="layui-form-label">{:lang('art')}{:lang('type')}：</label>

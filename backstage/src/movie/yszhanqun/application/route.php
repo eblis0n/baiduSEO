@@ -288,7 +288,7 @@ return array (
     array (
     ),
   ),
-  'vodtype/<id>-<page?>' => 
+  'vodclass/<id>-<page?>' => 
   array (
     0 => 'vod/type',
     1 => 
@@ -298,7 +298,7 @@ return array (
     array (
     ),
   ),
-  'vodtype/<id>' => 
+  'vodclass/<id>' => 
   array (
     0 => 'vod/type',
     1 => 
@@ -308,7 +308,7 @@ return array (
     array (
     ),
   ),
-  'voddetail/<id>' => 
+  'voditem/<id>' => 
   array (
     0 => 'vod/detail',
     1 => 
@@ -328,7 +328,7 @@ return array (
     array (
     ),
   ),
-  'vodplay/<id>-<sid>-<nid>' => 
+  'playitem/<id>-<sid>-<nid>' => 
   array (
     0 => 'vod/play',
     1 => 

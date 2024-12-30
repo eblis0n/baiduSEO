@@ -166,8 +166,10 @@ class Rss extends Controller
                 ->select();
 
             foreach ($vodList as $vod) {
+                // 确保生成正确的路径
+                $vod_url = "/voditem/" . $vod['vod_en'] . ".html"; // 修改此行，确保路径为 /voditem/
                 echo "<url>\n";
-                echo "<loc>https://" . $_SERVER['HTTP_HOST'] . "/voditem/" . $vod['vod_en'] . "</loc>\n";
+                echo "<loc>https://" . $_SERVER['HTTP_HOST'] . $vod_url . "</loc>\n";
                 echo "<lastmod>" . date('Y-m-d', $vod['vod_time']) . "</lastmod>\n";
                 echo "<changefreq>weekly</changefreq>\n";
                 echo "<priority>0.6</priority>\n";
@@ -180,6 +182,8 @@ class Rss extends Controller
             $this->saveFile($content, $filename);
         }
     }
+
+
 
     private function generatePlayUrls()
     {
@@ -200,21 +204,27 @@ class Rss extends Controller
                 ->limit(($page - 1) * $limit, $limit)
                 ->select();
 
-            foreach ($vodList as $v) {
-                if (!empty($v['vod_play_from'])) {
-                    $play_from = explode('$$$', $v['vod_play_from']);
-                    $play_url = explode('$$$', $v['vod_play_url']);
+            foreach ($vodList as $vod) {
+                // 确保只有存在播放源时才生成播放链接
+                if (!empty($vod['vod_play_from'])) {
+                    $play_from = explode('$$$', $vod['vod_play_from']);
+                    $play_url = explode('$$$', $vod['vod_play_url']);
 
                     foreach ($play_from as $key => $from) {
                         if (!empty($play_url[$key])) {
-                            $urls = explode('#', $play_url[$key]);
-                            foreach ($urls as $sid => $url) {
+                            // 处理每个播放源的链接
+                            $play_url_parts = explode('#', $play_url[$key]);
+
+                            foreach ($play_url_parts as $sid => $url) {
                                 if (!empty($url)) {
+                                    // 拼接正确的路径，确保使用 /playitem/ 路径
+                                    $play_url_final = "/playitem/" . $vod['vod_en'] . "-" . urlencode($from) . ".html";
+
                                     echo "<url>\n";
-                                    echo "<loc>https://" . $_SERVER['HTTP_HOST'] . "/playitem/" . $v['vod_en'] . "-" . ($key + 1) . "-" . ($sid + 1) . ".html</loc>\n";
-                                    echo "<lastmod>" . date('Y-m-d', $v['vod_time']) . "</lastmod>\n";
-                                    echo "<changefreq>always</changefreq>\n";
-                                    echo "<priority>0.6</priority>\n";
+                                    echo "<loc>https://" . $_SERVER['HTTP_HOST'] . $play_url_final . "</loc>\n";
+                                    echo "<lastmod>" . date('Y-m-d', $vod['vod_time']) . "</lastmod>\n";
+                                    echo "<changefreq>weekly</changefreq>\n";
+                                    echo "<priority>0.5</priority>\n";
                                     echo "</url>\n";
                                 }
                             }
@@ -229,6 +239,7 @@ class Rss extends Controller
             $this->saveFile($content, $filename);
         }
     }
+
 
     private function generateExtraUrls()
     {

@@ -47,7 +47,7 @@ class Receive extends Base
 
         $inter = mac_interface_type();
         if(empty($info['type_id'])) {
-            $info['type_id'] = $inter['vodtype'][$info['type_name']];
+            $info['type_id'] = $inter['vodclass'][$info['type_name']];
         }
 
         $data['data'][] = $info;

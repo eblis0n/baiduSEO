@@ -133,12 +133,12 @@ baiduspider',
 111.225
 220.243
 103.82',
-    'site_name' => '$index_title',
-    'site_url' => 'www.$site_url',
-    'site_wapurl' => 'www.$site_url',
-    'site_keywords' => '$index_keywords',
-    'site_description' => '$index_description',
-    'site_icp' => '$site_icp',
+    'site_name' => '最新院线大片抢先看_好看的高清电影大全_热搜电视剧在线观看_短剧网',
+    'site_url' => 'www.bingo-t.com',
+    'site_wapurl' => 'www.bingo-t.com',
+    'site_keywords' => '短剧网,高清电影,免费电视剧大全,热门短剧,最新电影,手机在线追剧网',
+    'site_description' => '短剧网为您分享最新高清电影、美剧、韩剧、国产剧、短剧等最近中文字幕高清字幕资源免费高清在线观看!',
+    'site_icp' => '',
     'site_qq' => '',
     'site_email' => '',
     'install_dir' => '/',
@@ -314,7 +314,7 @@ baiduspider',
   array (
     'status' => 0,
     'pass' => 'WD9RYPM75CGQTU5N',
-    'vodtype' => '动作片=动作',
+    'vodclass' => '动作片=动作',
     'arttype' => '头条=头条',
     'actortype' => '',
     'websitetype' => '',
@@ -594,9 +594,9 @@ baiduspider',
   array (
     'topic_index' => 'topic/index',
     'topic_detail' => 'topic/{id}/index',
-    'vod_type' => 'vodtypehtml/{id}/index',
+    'vod_type' => 'vodclasshtml/{id}/index',
     'vod_detail' => 'vodhtml/{id}/index',
-    'vod_play' => 'vodplayhtml/{id}/index',
+    'vod_play' => 'playitemhtml/{id}/index',
     'vod_down' => 'voddownhtml/{id}/index',
     'art_type' => 'arttypehtml/{id}/index',
     'art_detail' => 'arthtml/{id}/index',
@@ -646,11 +646,11 @@ roledetail-<id>   => role/detail
 roleshow/<by?>-<letter?>-<level?>-<order?>-<page?>-<rid?>   => role/show
 
 
-vodtype/<id>-<page?>   => vod/type
-vodtype/<id>   => vod/type
-voddetail/<id>   => vod/detail
+vodclass/<id>-<page?>   => vod/type
+vodclass/<id>   => vod/type
+voditem/<id>   => vod/detail
 vodrss-<id>   => vod/rss
-vodplay/<id>-<sid>-<nid>   => vod/play
+playitem/<id>-<sid>-<nid>   => vod/play
 voddown/<id>-<sid>-<nid>   => vod/down
 vodshow/<id>-<area?>-<by?>-<class?>-<lang?>-<letter?>-<level?>-<order?>-<page?>-<state?>-<tag?>-<year?>   => vod/show
 vodsearch/<wd?>-<actor?>-<area?>-<by?>-<class?>-<director?>-<lang?>-<letter?>-<level?>-<order?>-<page?>-<state?>-<tag?>-<year?>   => vod/search
