@@ -99,16 +99,18 @@ class updateSiteData():
 
                             print(f"随机栏目 发布文章数量")
 
-                            self.sql.select_type_rand_sql(db_config_slave, database_name)
+                            sqldata = self.sql.select_type_rand_sql(db_config_slave, database_name)
 
                             artInsert = []
-                            prompt = f"你是一个娱乐百事通，请写一段2000字左右的 娱乐趣闻；要求：1、内容必须为正面，不能出现粗言秽语；"
+                            prompt_title = f"你是一名嗅觉灵敏的记者， 以影视为主题，写20字的娱乐新闻标题；要求：1、内容必须为正面，不能出现粗言秽语；2、不能脱离实际，搬弄是非，捏造事实；"
+                            title = self.witchdatas(witch, AIbase, prompt_title)
+                            prompt_con = f"你是一个娱乐百事通，请 围绕 <{title}> 展开写一段2000字左右的 娱乐趣闻；要求：1、内容必须为正面，不能出现粗言秽语；2、不能脱离实际，搬弄是非，捏造事实 "
 
 
                             for _ in range(int(row[i])):
                                 data = {
-                                    "type_id": 1,  # 类型 ID
-                                    "type_id_1": 0,  # 次类型 ID
+                                    "type_id": int(sqldata[0]["type_id"]),  # 类型 ID
+                                    "type_id_1": int(sqldata[0]["type_pid"]),  # 次类型 ID
                                     "group_id": 0,  # 分组 ID
                                     "art_name": "文章名称",  # 文章名称
                                     "art_sub": "文章副标题",  # 文章副标题
@@ -151,7 +153,7 @@ class updateSiteData():
                                     "art_pwd_url": "/download/123",  # 密码跳转 URL
                                     "art_title": "文章标题内容",  # 文章标题
                                     "art_note": "文章注释内容",  # 文章注释
-                                    "art_content": f"{self.witchdatas(witch, AIbase, prompt)}"  # 文章正文
+                                    "art_content": f"{self.witchdatas(witch, AIbase, prompt_con)}"  # 文章正文
                                 }
 
                                 artInsert.append(data)
