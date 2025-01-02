@@ -8,6 +8,7 @@
 """
 import os
 import sys
+import time
 
 base_dr = str(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 bae_idr = base_dr.replace('\\', '/')
@@ -63,6 +64,45 @@ class setSQL():
             print(f"数据库连接失败：{e}")
             raise
     
+    def update_vod_time(self, db_config_slave, database_name, maxday):
+        """
+            @Datetime ： 2025/1/2 21:56
+            @Author ：eblis
+            @Motto：简单描述用途
+        """
+        db_config_slave["database"] = database_name
+
+        try:
+            # 连接到数据库
+            connection = pymysql.connect(cursorclass=pymysql.cursors.DictCursor, **db_config_slave)
+
+            with connection.cursor() as cursor:
+                # 获取当前时间戳
+                current_timestamp = int(time.time())
+                thirty_days_ago = current_timestamp - maxday * 24 * 60 * 60  # 30天前的时间戳
+
+                # 更新超过30天的记录
+                sql_update = """
+                                    UPDATE `mac_vod`
+                                    SET `vod_time` = %s
+                                    WHERE `vod_time` < %s;
+                                """
+                cursor.execute(sql_update, (current_timestamp, thirty_days_ago))
+
+                # 提交更改
+                connection.commit()
+
+                # 获取更新的行数
+                updated_rows = cursor.rowcount
+                print(f"更新了 {updated_rows} 条记录的 `vod_time` 字段。")
+
+                return updated_rows
+
+        except pymysql.err.OperationalError as e:
+            print(f"数据库连接失败：{e}")
+            raise
+
+
 
     def single_insert_vod_to_B(self, db_config_slave, random_documents, database_name):
         """
