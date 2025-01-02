@@ -15,6 +15,7 @@ bae_idr = base_dr.replace('\\', '/')
 sys.path.append(bae_idr)
 import random
 from datetime import datetime, timedelta
+import subprocess
 class setOther():
     def sanitize_mysql_name(slef, name: str) -> str:
         """
@@ -57,3 +58,26 @@ class setOther():
         one_month_ago = now - timedelta(days=num)
         random_date = one_month_ago + timedelta(seconds=random.randint(0, int((now - one_month_ago).total_seconds())))
         return int(random_date.timestamp())
+
+    @staticmethod
+    def baota_restart_nginx():
+        try:
+            # 使用 subprocess 执行重启命令
+            result = subprocess.run(['/etc/init.d/nginx', 'restart'], check=True, text=True, capture_output=True)
+            print("Nginx 服务已成功重启")
+            print("输出:", result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"重启 Nginx 服务时出错: {e}")
+            print("错误信息:", e.stderr)
+
+    def centos_restart_nginx(slef):
+        try:
+            # 使用 subprocess 执行 systemctl 命令重启 Nginx 服务
+            result = subprocess.run(['systemctl', 'restart', 'nginx'], check=True, text=True, capture_output=True)
+            print("Nginx 服务已成功重启")
+            print("输出:", result.stdout)
+        except subprocess.CalledProcessError as e:
+            print(f"重启 Nginx 服务时出错: {e}")
+            print("错误信息:", e.stderr)
+        except FileNotFoundError:
+            print("无法找到 systemctl 命令，请确认它是否安装并可用。")

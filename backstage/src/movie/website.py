@@ -27,8 +27,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from src.logoDesign.logo import logo
 
 
-
-
 class website():
 
     def run(slef, font_path, img_folder, database_name, source_folder, destination_path, db_config_master, db_config_slave,
@@ -105,11 +103,7 @@ class website():
         print(f"第12步：修改文件夹权限chmod 777")
         slef.chmod_777(destination_path)
 
-        print("重启NG 收工")
-        try:
-            slef.baota_restart_nginx()
-        except:
-            slef.centos_restart_nginx()
+
 
 
     def sanitize_mysql_name(slef, name: str) -> str:
@@ -797,9 +791,6 @@ if __name__ == '__main__':
     documents = ws.witchdatas(witch, new_db_config, "bingo_t_com")
     # print(f"本批次数据使用：{documents}")
 
-
-
-
     # 项目根目录
     pro_folder = "/www"
     # 项目模版目录
@@ -837,9 +828,11 @@ if __name__ == '__main__':
         ws.run(font_path, img_folder, database_name, source_folder, destination_path, db_config_master, db_config_slave,
                sql_file_path, database_php_path, database_newdict, maccms_php_path, seo_floder, seo_dict, ng_path,
                well_known_path, source_file_name, pseudo_path, pseudo_file_name, ng_newdict, random_documents)
-        site_time = datetime.now()
-        siteed_time = site_time.strftime("%Y-%m-%d %H:%M:%S")
-        print(f"当前站点{site}上线完成时间:{siteed_time}")
+    print("重启NG 收工")
+    try:
+        ws.baota_restart_nginx()
+    except:
+        ws.centos_restart_nginx()
 
     always_time = datetime.now()
     siteed_always_time = always_time.strftime("%Y-%m-%d %H:%M:%S")

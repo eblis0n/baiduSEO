@@ -157,7 +157,7 @@ class setSQL():
             with connection_art.cursor() as cursor:
                 # SQL 插入语句
                 sql = """
-                    INSERT INTO art (
+                    INSERT INTO mac_art (
                         type_id, type_id_1, group_id, art_name, art_sub, art_en, art_status, art_letter,
                         art_color, art_from, art_author, art_tag, art_class, art_pic, art_pic_thumb, art_pic_slide,
                         art_pic_screenshot, art_blurb, art_remarks, art_jumpurl, art_tpl, art_level, art_lock,
@@ -208,7 +208,7 @@ class setSQL():
 
                 # SQL 插入语句
                 sql = """
-                        INSERT INTO comments (
+                        INSERT INTO `mac_comment` (
                             comment_mid, comment_rid, comment_pid, user_id, 
                             comment_status, comment_name, comment_ip, comment_time, 
                             comment_content, comment_up, comment_down, comment_reply, comment_report
@@ -253,7 +253,7 @@ class setSQL():
 
                 # SQL 插入语句
                 sql = """
-                    INSERT  INTO `gbook` (
+                    INSERT  INTO `mac_gbook` (
                    `gbook_rid`, `user_id`, `gbook_status`, `gbook_name`, `gbook_ip`, `gbook_time`, `gbook_reply_time`, `gbook_content`, `gbook_reply`)
                     VALUES (
                         %(gbook_rid)s, %(user_id)s, %(gbook_status)s, %(gbook_name)s,  INET_ATON(%(gbook_ip)s), %(gbook_time)s, %(gbook_reply_time)s, %(gbook_content)s, %(gbook_reply)s)

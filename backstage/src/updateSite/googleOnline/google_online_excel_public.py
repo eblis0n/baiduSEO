@@ -14,12 +14,11 @@ bae_idr = base_dr.replace('\\', '/')
 sys.path.append(bae_idr)
 import gspread
 from google.oauth2 import service_account
-# import glob
 import datetime
 class googleOnlinePublic():
     def __init__(self):
         self.credentials = service_account.Credentials.from_service_account_file(
-            '/Users/eblis/project/shanQ/ProFilePro/baiduSEO/backstage/src/updateSite/google_file/account_file/utility-melody-416909-8dab6e1b360f.json',
+            '/www/baiduSEO/backstage/src/updateSite/google_file/account_file/utility-melody-416909-8dab6e1b360f.json',
             scopes=['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive'])
 
     def google_online_excel_workbook(self, target_url):
