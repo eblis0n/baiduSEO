@@ -165,6 +165,7 @@ local.properties
 gradle.properties
 examples/
 Examples/
+exercise/
 
 report/
 
