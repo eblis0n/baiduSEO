@@ -94,8 +94,6 @@ class setSQL():
 
                 # 获取更新的行数
                 updated_rows = cursor.rowcount
-                print(f"更新了 {updated_rows} 条记录的 `vod_time` 字段。")
-
                 return updated_rows
 
         except pymysql.err.OperationalError as e:

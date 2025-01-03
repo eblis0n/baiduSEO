@@ -4,10 +4,10 @@ import random
 from datetime import datetime
 
 # 文件路径
-domain_file = '/Users/eblis/project/shanQ/ProFilePro/baiduSEO/backstage/src/movie/jsonfile/domains.txt'
-tdk_file = '/Users/eblis/project/shanQ/ProFilePro/baiduSEO/backstage/src/movie/jsonfile/tdk.xlsx'
-output_file = '/Users/eblis/project/shanQ/ProFilePro/baiduSEO/backstage/src/movie/output.json'
-brand_file = '/Users/eblis/project/shanQ/ProFilePro/baiduSEO/backstage/src/movie/jsonfile/brand.txt'
+domain_file = 'www/baiduSEO/backstage/src/movie/jsonfile/domains.txt'
+tdk_file = 'www/baiduSEO/backstage/src/movie/jsonfile/tdk.xlsx'
+output_file = 'www/baiduSEO/backstage/src/movie/output.json'
+brand_file = 'www/baiduSEO/backstage/src/movie/jsonfile/brand.txt'
 
 # 获取当前年份
 current_year = datetime.now().year

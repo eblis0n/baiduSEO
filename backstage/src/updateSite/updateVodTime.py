@@ -40,4 +40,4 @@ vodList = ["cnjinglei_com",
 
 for vod in vodList:
     updated_rows = sql.update_vod_time(db_config_slave, vod, 30)
-    print(updated_rows)
+    print(f"{vod} 更新了 {updated_rows} 条记录的 `vod_time` 字段。")

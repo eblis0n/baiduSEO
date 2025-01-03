@@ -12,7 +12,7 @@ class cloudflare():
         """
 
         # 定义文件路径
-        file_path = "/www/baiduSEO/backstage/src/movie/cloudflare_go/cloudflare_ips_v4.txt"
+        file_path = "/www/baiduSEO/backstage/src/common/document/cloudflare_ips_v4.txt"
 
         # 获取 Cloudflare IPv4 地址
         ipv4_url = "https://www.cloudflare.com/ips-v4"

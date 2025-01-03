@@ -1,18 +1,3 @@
-/*
-Navicat MySQL Data Transfer
-
-Source Server         : cms_com
-Source Server Version : 50562
-Source Host           : localhost:3306
-Source Database       : cms_com
-
-Target Server Type    : MYSQL
-Target Server Version : 50562
-File Encoding         : 65001
-
-Date: 2023-07-17 15:15:10
-*/
-
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -373,7 +358,7 @@ CREATE TABLE `mac_comment` (
   `user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `comment_status` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `comment_name` varchar(60) NOT NULL DEFAULT '',
-  `comment_ip` varchar(100) unsigned NOT NULL DEFAULT '',
+  `comment_ip` varchar(100)  NOT NULL DEFAULT '',
   `comment_time` int(10) unsigned NOT NULL DEFAULT '0',
   `comment_content` varchar(255) NOT NULL DEFAULT '',
   `comment_up` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -403,7 +388,7 @@ CREATE TABLE `mac_gbook` (
   `user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `gbook_status` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `gbook_name` varchar(60) NOT NULL DEFAULT '',
-  `gbook_ip` varchar(100) unsigned NOT NULL DEFAULT '',
+  `gbook_ip` varchar(100)  NOT NULL DEFAULT '',
   `gbook_time` int(10) unsigned NOT NULL DEFAULT '0',
   `gbook_reply_time` int(10) unsigned NOT NULL DEFAULT '0',
   `gbook_content` varchar(255) NOT NULL DEFAULT '',

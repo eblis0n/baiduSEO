@@ -31,7 +31,7 @@ class website():
 
     def run(slef, font_path, img_folder, database_name, source_folder, destination_path, db_config_master, db_config_slave,
             sql_file_path, database_php_path, database_newdict, maccms_php_path, seo_floder, seo_dict, ng_path,
-            well_known_path, source_file_name, pseudo_path, pseudo_file_name, ng_newdict, random_documents):
+            well_known_path,  source_ng_path, source_ng_name, pseudo_path, pseudo_file_name, ng_newdict, random_documents):
         """
             @Datetime ： 2024/12/19 15:25
             @Author ：eblis
@@ -83,14 +83,20 @@ class website():
         slef.process_directory(seo_floder, seo_dict)
 
         print("第8步：迁移并修改 /www/server/panel/vhost/nginx 配置文件夹")
-        slef.copy_file(source_folder, ng_path, source_file_name)
+        slef.copy_file(source_ng_path, ng_path, source_file_name=source_ng_name)
 
         with open(well_known_path, 'w+', encoding='utf-8') as file:
             file.write("")
 
         print("第9步：迁移并修改 /www/server/panel/vhost/rewrite/ 配置文件夹")
-        slef.copy_file(source_folder, pseudo_path, pseudo_file_name)
+        slef.copy_file(source_ng_path, pseudo_path, pseudo_file_name)
         slef.revise_default(ng_path, ng_newdict)
+
+        print("确保日志能顺利写入，手动新建日志目录")
+        log_directory = f"/www/wwwlogs/rizhi/{ng_newdict['$site']}"
+        os.makedirs(log_directory, exist_ok=True)
+        slef.chmod_777(log_directory)
+
 
         print(f"第10步：从主影片库迁移分类到 站点")
 
@@ -796,6 +802,7 @@ if __name__ == '__main__':
     # 项目模版目录
     source_folder = f"{pro_folder}/baiduSEO/backstage/src/movie/yszhanqun"
 
+    source_ng_path = "/www/baiduSEO/backstage/src/common/document"
     font_path = f"{pro_folder}/baiduSEO/backstage/src/logoDesign/NotoSansSC-VariableFont_wght.ttf"  # 替换为支持中文的字体路径
     img_folder = f"{pro_folder}/baiduSEO/backstage/src/logoDesign/img/"
 
@@ -815,7 +822,7 @@ if __name__ == '__main__':
         sql_file_path = f"{destination_path}/cms_com.sql"
         database_php_path = f"{destination_path}/application/database.php"
         maccms_php_path = f"{destination_path}/application/extra/maccms.php"
-        source_file_name = "nginx.conf"
+        source_ng_name = "stencil_nginx.conf"
         ng_path = f"/usr/local/nginx/conf/vhost/{database_name}.conf"
         well_known_path = f"/usr/local/nginx/conf/vhost/well-known/{database_name}.conf"
         database_newdict = {'$site': f"{site}", '$database': f"{database_name}", '$user': f"{db_config_slave['user']}",
@@ -827,7 +834,7 @@ if __name__ == '__main__':
         pseudo_file_name = "site.com.conf"
         ws.run(font_path, img_folder, database_name, source_folder, destination_path, db_config_master, db_config_slave,
                sql_file_path, database_php_path, database_newdict, maccms_php_path, seo_floder, seo_dict, ng_path,
-               well_known_path, source_file_name, pseudo_path, pseudo_file_name, ng_newdict, random_documents)
+               well_known_path, source_ng_path, source_ng_name, pseudo_path, pseudo_file_name, ng_newdict, random_documents)
     print("重启NG 收工")
     try:
         ws.baota_restart_nginx()
